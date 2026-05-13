@@ -32,10 +32,12 @@ export function createUI(onMaterialSelect: (id: string) => void) {
       <div id="material-stone" style="cursor:pointer; color: rgb(153, 153, 153)">Stone</div>
       <div id="material-water" style="cursor:pointer; color: rgb(99, 99, 255)">Water</div>
       <div id="material-glitch" style="cursor:pointer; color: rgb(222, 17, 139)">Glitch</div>
-        <div id="material-electric" style="cursor:pointer; color: rgb(255, 255, 80)">Electric</div>
-        <div id="material-metal" style="cursor:pointer; color: rgb(47, 50, 61)">Metal</div>
-        <div id="material-lava" style="cursor:pointer; color: rgb(184, 9, 9)">Lava</div>
-        <div id="material-fire" style="cursor:pointer; color: rgb(224, 74, 84)">Fire</div>
+      <div id="material-electric" style="cursor:pointer; color: rgb(255, 255, 80)">Electric</div>
+      <div id="material-metal" style="cursor:pointer; color: rgb(47, 50, 61)">Metal</div>
+      <div id="material-lava" style="cursor:pointer; color: rgb(184, 9, 9)">Lava</div>
+      <div id="material-fire" style="cursor:pointer; color: rgb(224, 74, 84)">Fire</div>
+      <div id="material-obsidian" style="cursor:pointer; color: rgb(35, 53, 98)">Obsidian</div>
+      <div id="material-oil" style="cursor:pointer; color: rgb(99, 46, 10)">Oil</div>
     </div>
   `;
   document.body.appendChild(ui);
@@ -71,4 +73,11 @@ export function createUI(onMaterialSelect: (id: string) => void) {
             document.getElementById("material-fire")!.addEventListener("click", () => {
     onMaterialSelect("fire"); select("fire");
   });
+              document.getElementById("material-obsidian")!.addEventListener("click", () => {
+    onMaterialSelect("obsidian"); select("obsidian");
+  });
+                document.getElementById("material-oil")!.addEventListener("click", () => {
+    onMaterialSelect("oil"); select("oil");
+  });
 }
+
