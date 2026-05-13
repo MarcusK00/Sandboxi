@@ -5,7 +5,7 @@ const FRAMES_PER_SECOND = 30;
 
 export function updateElectric(grid: Grid, x: number, y: number) {
 
-  // lifetime
+
   const lifetime = grid.getMeta(x, y) - (1 / FRAMES_PER_SECOND);
 
   if (lifetime <= 0) {
@@ -16,10 +16,10 @@ export function updateElectric(grid: Grid, x: number, y: number) {
 
   grid.setMeta(x, y, lifetime);
 
-  // flicker chance
+
   if (Math.random() > 0.7) return;
 
-  // random direction
+
   const dirs = [
     [0, -1],
     [0, 1],
@@ -38,18 +38,18 @@ export function updateElectric(grid: Grid, x: number, y: number) {
 
   switch (target) {
 
-    // move through air
+
     case CellType.Empty:
       grid.swap(x, y, nx, ny);
       break;
 
-    // conduct through metal
+  
     case CellType.Metal:
 
-      // create new electricity INSIDE metal
+  
       if (Math.random() < 0.4) {
 
-        // pick another nearby metal tile
+  
         for (const [mx, my] of dirs) {
 
           const tx = nx + mx;
@@ -67,13 +67,13 @@ export function updateElectric(grid: Grid, x: number, y: number) {
         }
       }
 
-      // current electric disappears after entering metal
+    
       grid.set(x, y, CellType.Empty);
       grid.setMeta(x, y, 0);
 
       break;
 
-    // anything else destroys it
+
     default:
       grid.set(x, y, CellType.Empty);
       grid.setMeta(x, y, 0);
