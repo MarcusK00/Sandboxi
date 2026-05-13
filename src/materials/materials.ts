@@ -4,6 +4,7 @@ import { updateWater } from "./water";
 import { updateGlitch } from "./glitch";
 import { updateLava } from "./lava";
 import { updateFire } from "./fire";
+import { updateOil } from "./oil";
 import { updateElectric } from "./electric";
 import type { Grid } from "../world/grid";
 
@@ -19,6 +20,8 @@ export const cellColors: Record<number, [number, number, number]> = {
   [CellType.Metal]: [47, 50, 61],
   [CellType.Lava]: [184, 9, 9],
   [CellType.Fire]: [224, 74, 84],
+  [CellType.Obsidian]: [35, 53, 98],
+  [CellType.Oil]: [99, 46, 10],
 };
 
 export const updateFns: Partial<Record<number, UpdateFn>> = {
@@ -28,4 +31,5 @@ export const updateFns: Partial<Record<number, UpdateFn>> = {
     [CellType.Electric]: updateElectric,
     [CellType.Lava]: updateLava,
     [CellType.Fire]: updateFire,
+     [CellType.Oil]: updateOil,
 };
