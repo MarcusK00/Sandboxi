@@ -14,12 +14,40 @@ switch (grid.get(x, y + 1)) {
       grid.swap(x, y, x, y + 1);
       break;
 
-      case CellType.Stone:
-        if (Math.random() > 0.003) return;
+    case CellType.Stone: {
+
+  if (Math.random() < 0.03) {
+    grid.set(x, y + 1, CellType.Lava);
+  }
+
+
+  if (Math.random() < 0.005) {
+    const dir = Math.random() < 0.5 ? -1 : 1;
+    const nx = x + dir;
+    if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
+      grid.set(nx, y + 1, CellType.Lava);
+    }
+  }
+  break;
+}
+    case CellType.Water:
+        if (Math.random() > 0.4) return;
        
-            grid.set(x, y+1, CellType.Lava);
+        for(let i = 1; i<=4; i++){
+           if (Math.random() > 0.6) return;
+grid.set(x, y+i, CellType.Obsidian);
+        }
+            
         break;
 
+    case CellType.Oil: {
+ if (Math.random() > 0.5) return;
+
+  grid.swap(x, y, x,y+1);
+  grid.set(x, y, CellType.Fire);
+  grid.setMeta(x, y, 0.6); 
+  break;
+}
     default: {
       const dir = Math.random() < 0.5 ? -1 : 1;
       const diagA = x;
