@@ -12,6 +12,7 @@ A pixel-based sandbox simulation built with TypeScript, Vite, and PixiJS. Paint 
 ## Controls
 - **Left click / drag:** paint the selected material.
 - **Right click:** eraser.
+- **(+ and -):** brush size
 - **R:** reset the simulation.
 
 ## Getting started
@@ -32,7 +33,3 @@ npm run preview
 - `src/ui/` — in-game UI and material picker.
 - `src/world/` — grid and world data structures.
 
-## Tech stack
-- TypeScript
-- Vite
-- PixiJS
