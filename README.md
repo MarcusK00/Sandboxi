@@ -1,1 +1,1 @@
-Try it out here: marcusk00.github.io/Sandboxi/
+[Try it out here!](https://marcusk00.github.io/Sandboxi/)
