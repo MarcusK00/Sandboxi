@@ -5,6 +5,14 @@ export function createUI(onMaterialSelect: (id: string) => void) {
 
   const ui = document.createElement("div");
   ui.innerHTML = `
+     <div style="
+  position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+  font-family: monospace; font-size: 20px;
+  user-select: none; letter-spacing: 2px;
+  white-space: nowrap;
+">
+  <span style="color: rgb(216, 192, 106)">S</span><span style="color: rgb(153, 153, 153)">a</span><span style="color: rgb(99, 99, 255)">n</span><span style="color: rgb(216, 192, 106)">d</span><span style="color: rgb(222, 17, 139)">b</span><span style="color: rgb(255, 255, 80)">o</span><span style="color: rgb(99, 99, 255)">x</span><span style="color: rgb(216, 192, 106)">i</span>
+</div>
     <div style="
       position: fixed; top: 16px; right: 16px;
       font-family: monospace; font-size: 18px;
