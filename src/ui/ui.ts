@@ -18,6 +18,11 @@ export function createUI(onMaterialSelect: (id: string) => void) {
       font-family: monospace; font-size: 18px;
       user-select: none; opacity: 0.6; color: rgb(202, 202, 202);
     ">[R] reset</div>
+<div style="
+  position: fixed; top: 42px; right: 16px;
+  font-family: monospace; font-size: 18px;
+  user-select: none; opacity: 0.6; color: rgb(202, 202, 202);
+">[Right Click] eraser</div>
     <div style="
       position: fixed; top: 16px; left: 16px;
       font-family: monospace; font-size: 18px;
@@ -28,6 +33,9 @@ export function createUI(onMaterialSelect: (id: string) => void) {
       <div id="material-water" style="cursor:pointer; color: rgb(99, 99, 255)">Water</div>
       <div id="material-glitch" style="cursor:pointer; color: rgb(222, 17, 139)">Glitch</div>
         <div id="material-electric" style="cursor:pointer; color: rgb(255, 255, 80)">Electric</div>
+        <div id="material-metal" style="cursor:pointer; color: rgb(47, 50, 61)">Metal</div>
+        <div id="material-lava" style="cursor:pointer; color: rgb(184, 9, 9)">Lava</div>
+        <div id="material-fire" style="cursor:pointer; color: rgb(224, 74, 84)">Fire</div>
     </div>
   `;
   document.body.appendChild(ui);
@@ -53,5 +61,14 @@ export function createUI(onMaterialSelect: (id: string) => void) {
   });
         document.getElementById("material-electric")!.addEventListener("click", () => {
     onMaterialSelect("electric"); select("electric");
+  });
+          document.getElementById("material-metal")!.addEventListener("click", () => {
+    onMaterialSelect("metal"); select("metal");
+  });
+            document.getElementById("material-lava")!.addEventListener("click", () => {
+    onMaterialSelect("lava"); select("lava");
+  });
+            document.getElementById("material-fire")!.addEventListener("click", () => {
+    onMaterialSelect("fire"); select("fire");
   });
 }
