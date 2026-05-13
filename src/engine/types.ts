@@ -8,6 +8,8 @@ export const CellType = {
   Metal: 6,
   Lava:7,
   Fire:8,
+  Obsidian:9,
+  Oil:10,
 } as const;
 
 export type CellType = (typeof CellType)[keyof typeof CellType]; 
