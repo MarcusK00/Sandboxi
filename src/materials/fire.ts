@@ -14,7 +14,7 @@ const lifetime = grid.getMeta(x, y) - (1 / FRAMES_PER_SECOND);
 
   grid.setMeta(x, y, lifetime);
 
-  if (Math.random() > 0.3) return;
+  if (Math.random() > 0.6) return;
 
   const n = Math.random()<0.3?-1:0;
 

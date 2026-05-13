@@ -32,7 +32,7 @@ if (
        this.grid.setMeta(x, y, 5);
     break;
         case CellType.Fire:
-       this.grid.setMeta(x, y, 2);
+       this.grid.setMeta(x, y, 1);
     break;
   }
 }
