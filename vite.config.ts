@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "https://github.com/MarcusK00/Powder-Sandbox",
+  base: "/Powder-Sandbox/",
 });
