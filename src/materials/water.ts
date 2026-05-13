@@ -5,6 +5,7 @@ const SPREAD = 4;
 
 export function updateWater(grid: Grid, x: number, y: number) {
   if (y + 1 >= grid.height) return;
+  if(Math.random()>0.6) return;
 
   switch (grid.get(x, y + 1)) {
     case CellType.Empty:
