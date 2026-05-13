@@ -8,10 +8,34 @@ import { updateOil } from "./oil";
 import { updateElectric } from "./electric";
 import type { Grid } from "../world/grid";
 
+let emptyColor: [number, number, number] = [0, 0, 0];
+let isBlack = true;
+
+function setEmptyColorToBlack() {
+  emptyColor = [0, 0, 0];
+  isBlack = true;
+}
+
+function setEmptyColorToWhite() {
+  emptyColor = [255, 255, 255];
+  isBlack = false;
+}
+
+export function switchEmptyColor() {
+  if (isBlack) {
+    setEmptyColorToWhite();
+  } else {
+    setEmptyColorToBlack();
+  }
+
+  cellColors[CellType.Empty] = emptyColor;
+}
+
 export type UpdateFn = (grid: Grid, x: number, y: number) => void;
 
 export const cellColors: Record<number, [number, number, number]> = {
-  [CellType.Empty]: [0,   0,   0  ],
+  [CellType.Empty]: emptyColor,
+
   [CellType.Sand]:  [216, 192, 106],
   [CellType.Stone]: [153, 153, 153],
   [CellType.Water]: [99, 99, 255],

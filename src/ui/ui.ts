@@ -1,3 +1,6 @@
+import { cellColors } from "../materials/materials";
+import { CellType } from "../engine/types";
+
 export function createUI(onMaterialSelect: (id: string) => void) {
   document.body.style.margin = "0";
   document.body.style.overflow = "hidden";
@@ -11,7 +14,7 @@ export function createUI(onMaterialSelect: (id: string) => void) {
   user-select: none; letter-spacing: 2px;
   white-space: nowrap;
 ">
-  <span style="color: rgb(216, 192, 106)">S</span><span style="color: rgb(153, 153, 153)">a</span><span style="color: rgb(99, 99, 255)">n</span><span style="color: rgb(216, 192, 106)">d</span><span style="color: rgb(222, 17, 139)">b</span><span style="color: rgb(255, 255, 80)">o</span><span style="color: rgb(99, 99, 255)">x</span><span style="color: rgb(216, 192, 106)">i</span>
+  <span id="selected-material" style="color: rgb(216, 192, 106)">Sand</span>
 </div>
     <div style="
       position: fixed; top: 16px; right: 16px;
@@ -41,12 +44,30 @@ export function createUI(onMaterialSelect: (id: string) => void) {
     </div>
   `;
   document.body.appendChild(ui);
-
+const materialToType: Record<string, CellType> = {
+  sand: CellType.Sand,
+  stone: CellType.Stone,
+  water: CellType.Water,
+  glitch: CellType.Glitch,
+  electric: CellType.Electric,
+  metal: CellType.Metal,
+  lava: CellType.Lava,
+  fire: CellType.Fire,
+  obsidian: CellType.Obsidian,
+  oil: CellType.Oil,
+};
   let selected = "material-sand";
   const select = (id: string) => {
     document.getElementById(selected)!.style.fontWeight = "normal";
     selected = `material-${id}`;
     document.getElementById(selected)!.style.fontWeight = "bold";
+
+const label = id[0].toUpperCase() + id.slice(1);
+  const el = document.getElementById("selected-material")!;
+  el.textContent = label;
+
+  const [r, g, b] = cellColors[materialToType[id]];
+  el.style.color = `rgb(${r}, ${g}, ${b})`;
   };
 
   document.getElementById("material-sand")!.addEventListener("click", () => {

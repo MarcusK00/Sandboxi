@@ -1,5 +1,6 @@
 import type { Simulation } from "./simulation";
 import { CellType } from "./types";
+import { switchEmptyColor } from "../materials/materials";
 
 export class Input {
     
@@ -37,7 +38,7 @@ export class Input {
     case "9": this.setMaterial(CellType.Obsidian);  break;
     case "q": this.setMaterial(CellType.Oil);  break;
     
-
+    case "d": switchEmptyColor(); break;
     case "r": this.simulation.reset();  console.log("Reset");break;
     case "+": this.brushSize++; break;
     case "-": this.brushSize = Math.max(1, this.brushSize - 1); break;
@@ -103,6 +104,7 @@ private place(event: MouseEvent) {
   this.selectedMaterial = type;
 
   switch(type){
+    
     case CellType.Stone:
       this.brushSize=2;
       break;
