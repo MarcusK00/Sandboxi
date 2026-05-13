@@ -27,13 +27,15 @@ export class Input {
   private onKey(e: KeyboardEvent) {
     switch (e.key) {
     case "1": this.setMaterial(CellType.Sand);  break;
-    case "2": this.setMaterial(CellType.Stone); break;
+    case "2": this.setMaterial(CellType.Stone);  break;
     case "3": this.setMaterial(CellType.Water); break;
     case "4": this.setMaterial(CellType.Glitch); break;
-    case "5": this.setMaterial(CellType.Electric); break;
-    case "6": this.setMaterial(CellType.Metal); break;
-    case "7": this.setMaterial(CellType.Lava); break;
-    case "8": this.setMaterial(CellType.Fire); break;
+    case "5": this.setMaterial(CellType.Electric);  break;
+    case "6": this.setMaterial(CellType.Metal);  break;
+    case "7": this.setMaterial(CellType.Lava);  break;
+    case "8": this.setMaterial(CellType.Fire);  break;
+    case "9": this.setMaterial(CellType.Obsidian);  break;
+    case "q": this.setMaterial(CellType.Oil);  break;
     
 
     case "r": this.simulation.reset();  console.log("Reset");break;
@@ -99,6 +101,20 @@ private place(event: MouseEvent) {
 
   setMaterial(type: number) {
   this.selectedMaterial = type;
+
+  switch(type){
+    case CellType.Stone:
+      this.brushSize=2;
+      break;
+      case CellType.Metal:
+      this.brushSize=2;
+      break;
+      case CellType.Obsidian:
+      this.brushSize=2;
+      break;
+    default:
+      this.brushSize=1;
+  }
 }
 
 
