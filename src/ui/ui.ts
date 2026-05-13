@@ -56,6 +56,7 @@ const materialToType: Record<string, CellType> = {
   fire: CellType.Fire,
   obsidian: CellType.Obsidian,
   oil: CellType.Oil,
+  acid: CellType.Acid,
 };
   let selected = "material-sand";
   const select = (id: string) => {
