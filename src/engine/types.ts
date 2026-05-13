@@ -5,6 +5,9 @@ export const CellType = {
   Water: 3,
   Glitch: 4,
   Electric: 5,
+  Metal: 6,
+  Lava:7,
+  Fire:8,
 } as const;
 
 export type CellType = (typeof CellType)[keyof typeof CellType]; 
