@@ -41,6 +41,7 @@ export function createUI(onMaterialSelect: (id: string) => void) {
       <div id="material-fire" style="cursor:pointer; color: rgb(224, 74, 84)">Fire</div>
       <div id="material-obsidian" style="cursor:pointer; color: rgb(35, 53, 98)">Obsidian</div>
       <div id="material-oil" style="cursor:pointer; color: rgb(99, 46, 10)">Oil</div>
+      <div id="material-acid" style="cursor:pointer; color: rgb(161, 252, 3)">Acid</div>
     </div>
   `;
   document.body.appendChild(ui);
@@ -99,6 +100,9 @@ const label = id[0].toUpperCase() + id.slice(1);
   });
                 document.getElementById("material-oil")!.addEventListener("click", () => {
     onMaterialSelect("oil"); select("oil");
+  });
+                  document.getElementById("material-acid")!.addEventListener("click", () => {
+    onMaterialSelect("acid"); select("acid");
   });
 }
 

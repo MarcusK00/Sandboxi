@@ -21,6 +21,7 @@ export class Game {
   if (id === "fire") this.input.setMaterial(CellType.Fire);
   if (id === "obsidian") this.input.setMaterial(CellType.Obsidian);
   if (id === "oil") this.input.setMaterial(CellType.Oil);
+  if (id === "acid") this.input.setMaterial(CellType.Acid);
 });
     this.input = new Input(this.renderer.canvas, this.simulation);
   }

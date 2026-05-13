@@ -10,6 +10,7 @@ export const CellType = {
   Fire:8,
   Obsidian:9,
   Oil:10,
+  Acid:11,
 } as const;
 
 export type CellType = (typeof CellType)[keyof typeof CellType]; 

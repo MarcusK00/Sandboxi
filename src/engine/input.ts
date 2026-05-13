@@ -37,6 +37,7 @@ export class Input {
     case "8": this.setMaterial(CellType.Fire);  break;
     case "9": this.setMaterial(CellType.Obsidian);  break;
     case "q": this.setMaterial(CellType.Oil);  break;
+    case "w": this.setMaterial(CellType.Acid); break;
     
     case "d": switchEmptyColor(); break;
     case "r": this.simulation.reset();  console.log("Reset");break;
