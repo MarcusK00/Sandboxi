@@ -14,7 +14,12 @@ constructor(width: number, height: number) {
 }
 
 place(x: number, y: number, type: number) {
-  if (!this.grid.inBounds(x, y) || this.grid.get(x, y)>0) return;
+  if (!this.grid.inBounds(x, y)) return;
+
+if (
+  type !== CellType.Empty &&
+  this.grid.get(x, y) > 0
+) return;
   this.grid.set(x, y, type);
 
   switch(type){
@@ -22,7 +27,7 @@ place(x: number, y: number, type: number) {
         this.grid.setMeta(x, y, 5);
     break;
         case CellType.Electric:
-       this.grid.setMeta(x, y, 10);
+       this.grid.setMeta(x, y, 5);
     break;
   }
 }
