@@ -38,7 +38,7 @@ export class Simulation {
         this.grid.setMeta(x, y, 2);
         break;
       case CellType.Steam:
-        this.grid.setMeta(x, y, 9);
+        this.grid.setMeta(x, y, 30);
         break;
     }
   }

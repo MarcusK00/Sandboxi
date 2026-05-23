@@ -130,6 +130,7 @@ export class Input {
       case CellType.Wood:
         this.brushSize = 2;
         break;
+
       default:
         this.brushSize = 1;
     }
