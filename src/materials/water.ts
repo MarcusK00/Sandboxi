@@ -12,6 +12,10 @@ export function updateWater(grid: Grid, x: number, y: number) {
       grid.swap(x, y, x, y + 1);
       break;
 
+    case CellType.Ice:
+      grid.swap(x, y, x, y + 1);
+      break;
+
     case CellType.Sand:
       if (Math.random() > 0.9) {
         grid.set(x, y + 1, CellType.Mud);
@@ -21,10 +25,12 @@ export function updateWater(grid: Grid, x: number, y: number) {
 
     case CellType.Mud:
       let i = 1;
+
       while (grid.get(x, y + i) === CellType.Mud) {
         i++;
       }
-      if (Math.random() > 0.95) {
+      if (Math.random() > 0.95 && grid.get(x, y + i) === CellType.Sand) {
+
         grid.set(x, y + i, CellType.Mud);
         grid.set(x, y, CellType.Empty);
       }
@@ -33,7 +39,6 @@ export function updateWater(grid: Grid, x: number, y: number) {
 
 
     default: {
-
       const dir = Math.random() < 0.5 ? -1 : 1;
       const diagA = x + dir;
       const diagB = x - dir;
