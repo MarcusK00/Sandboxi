@@ -27,7 +27,7 @@ export function updateFuse(grid: Grid, x: number, y: number) {
 
         if (!grid.inBounds(nx, ny)) continue;
 
-        if (grid.get(nx, ny) === CellType.Fire && Math.random() < 0.001) {
+        if (grid.get(nx, ny) === CellType.Fire) {
 
             if (Math.random() < 0.6) {
                 grid.set(x, y, CellType.Fire);

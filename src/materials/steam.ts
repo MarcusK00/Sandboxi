@@ -8,7 +8,7 @@ export function updateSteam(grid: Grid, x: number, y: number) {
 
     if (lifetime <= 0) {
         grid.set(x, y, CellType.Water);
-        grid.setMeta(x, y, 0);
+        grid.setMeta(x, y, 2);
         return;
     }
 

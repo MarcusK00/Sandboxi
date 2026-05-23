@@ -32,7 +32,7 @@ export class Simulation {
         this.grid.setMeta(x, y, 5);
         break;
       case CellType.Fire:
-        this.grid.setMeta(x, y, 1);
+        this.grid.setMeta(x, y, 2);
         break;
       case CellType.Smoke:
         this.grid.setMeta(x, y, 20);

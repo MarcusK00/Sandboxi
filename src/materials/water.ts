@@ -13,7 +13,12 @@ export function updateWater(grid: Grid, x: number, y: number) {
       break;
 
     case CellType.Ice:
-      grid.swap(x, y, x, y + 1);
+      if (Math.random() > 0.95) {
+
+
+        grid.set(x, y, CellType.Ice);
+      }
+
       break;
 
     case CellType.Sand:

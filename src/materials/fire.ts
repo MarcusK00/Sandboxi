@@ -39,6 +39,8 @@ export function updateFire(grid: Grid, x: number, y: number) {
 
   const dirs = [
     [0, -1],
+    [0, -1],
+    [0, -1],
     [0, 1],
     [-1, 0],
     [1, 0],
@@ -69,6 +71,15 @@ export function updateFire(grid: Grid, x: number, y: number) {
       if (Math.random() < 0.1) {
         grid.set(nx, ny, CellType.Fire);
         grid.setMeta(nx, ny, 2);
+      }
+      break;
+
+    case CellType.Ice:
+
+      if (Math.random() < 0.3) {
+        grid.set(nx, ny, CellType.Empty);
+        grid.set(x, y, CellType.Water);
+
       }
       break;
   }
