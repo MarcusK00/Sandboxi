@@ -9,7 +9,10 @@ import { updateElectric } from "./electric";
 import { updateAcid } from "./acid";
 import { updateMud } from "./mud";
 import { updateSmoke } from "./smoke";
+import { updateWood } from "./wood";
 import { updateSteam } from "./steam";
+import { updateFuse } from "./fuse";
+
 import type { Grid } from "../world/grid";
 
 let emptyColor: [number, number, number] = [0, 0, 0];
@@ -71,4 +74,6 @@ export const updateFns: Partial<Record<number, UpdateFn>> = {
   [CellType.Mud]: updateMud,
   [CellType.Smoke]: updateSmoke,
   [CellType.Steam]: updateSteam,
+  [CellType.Fuse]: updateFuse,
+  [CellType.Wood]: updateWood,
 };
