@@ -16,12 +16,11 @@ switch (grid.get(x, y + 1)) {
 
     case CellType.Stone: {
 
-  if (Math.random() < 0.03) {
+    if (Math.random() < 0.03) {
     grid.set(x, y + 1, CellType.Lava);
-  }
+    }
 
-
-  if (Math.random() < 0.005) {
+    if (Math.random() < 0.005) {
     const dir = Math.random() < 0.5 ? -1 : 1;
     const nx = x + dir;
     if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
@@ -30,6 +29,24 @@ switch (grid.get(x, y + 1)) {
   }
   break;
 }
+
+    case CellType.Metal: {
+
+    if (Math.random() < 0.01) {
+    grid.set(x, y + 1, CellType.Lava);
+    }
+
+    if (Math.random() < 0.005) {
+    const dir = Math.random() < 0.5 ? -1 : 1;
+    const nx = x + dir;
+    if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
+      grid.set(nx, y + 1, CellType.Lava);
+    }
+  }
+  break;
+}
+
+
     case CellType.Water:
         if (Math.random() > 0.4) return;
        
