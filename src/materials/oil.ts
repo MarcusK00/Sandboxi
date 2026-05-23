@@ -6,7 +6,19 @@ const SPREAD = 2;
 export function updateOil(grid: Grid, x: number, y: number) {
   if (y + 1 >= grid.height) return;
   if (Math.random() > 0.8) return;
+  const n = Math.random() < 0.3 ? -1 : 0;
 
+  const dirs = [
+    [0, -1],
+    [0, 1],
+    [-1, 0],
+    [1, 0],
+  ];
+
+  const [dx, dy] = dirs[Math.floor(Math.random() * dirs.length)];
+
+  const nx = x + dx;
+  const ny = y + dy + n;
   switch (grid.get(x, y + 1)) {
     case CellType.Empty:
       grid.swap(x, y, x, y + 1);
@@ -14,26 +26,33 @@ export function updateOil(grid: Grid, x: number, y: number) {
 
     case CellType.Water: {
 
-  if (Math.random() < 0.001) {
-    grid.swap(x, y, x, y + 1);
-    break;
-  }
+      if (Math.random() < 0.001) {
+        grid.swap(x, y, x, y + 1);
+        break;
+      }
 
 
-  const dir = Math.random() < 0.5 ? -1 : 1;
-  const nx = x + dir;
+      const dir = Math.random() < 0.5 ? -1 : 1;
+      const nx = x + dir;
 
-  if (grid.inBounds(nx, y) && grid.get(nx, y) === CellType.Water) {
-    if (Math.random() < 0.2) {
-      grid.swap(x, y, nx, y);
+      if (grid.inBounds(nx, y) && grid.get(nx, y) === CellType.Water) {
+        if (Math.random() < 0.2) {
+          grid.swap(x, y, nx, y);
+        }
+      } else if (grid.inBounds(nx, y) && grid.get(nx, y) === CellType.Empty) {
+        if (Math.random() < 0.2) {
+          grid.swap(x, y, nx, y);
+        }
+      }
+      break;
     }
-  } else if (grid.inBounds(nx, y) && grid.get(nx, y) === CellType.Empty) {
-    if (Math.random() < 0.2) {
-      grid.swap(x, y, nx, y);
+
+    case CellType.Lava: {
+      if (Math.random() > 0.9) return;
+      grid.set(nx, ny, CellType.Fire);
+      grid.setMeta(nx, ny, 0.6);
+      break;
     }
-  }
-  break;
-}
 
     default: {
       const dir = Math.random() < 0.5 ? -1 : 1;
