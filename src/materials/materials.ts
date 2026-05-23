@@ -7,9 +7,9 @@ import { updateFire } from "./fire";
 import { updateOil } from "./oil";
 import { updateElectric } from "./electric";
 import { updateAcid } from "./acid";
-import { updateMud } from "./acid";
-import { updateSmoke } from "./acid";
-import { updateSteam } from "./acid";
+import { updateMud } from "./mud";
+import { updateSmoke } from "./smoke";
+import { updateSteam } from "./steam";
 import type { Grid } from "../world/grid";
 
 let emptyColor: [number, number, number] = [0, 0, 0];
