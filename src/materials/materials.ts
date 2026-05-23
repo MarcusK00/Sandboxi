@@ -7,6 +7,9 @@ import { updateFire } from "./fire";
 import { updateOil } from "./oil";
 import { updateElectric } from "./electric";
 import { updateAcid } from "./acid";
+import { updateMud } from "./acid";
+import { updateSmoke } from "./acid";
+import { updateSteam } from "./acid";
 import type { Grid } from "../world/grid";
 
 let emptyColor: [number, number, number] = [0, 0, 0];
@@ -37,7 +40,7 @@ export type UpdateFn = (grid: Grid, x: number, y: number) => void;
 export const cellColors: Record<number, [number, number, number]> = {
   [CellType.Empty]: emptyColor,
 
-  [CellType.Sand]:  [216, 192, 106],
+  [CellType.Sand]: [216, 192, 106],
   [CellType.Stone]: [153, 153, 153],
   [CellType.Water]: [99, 99, 255],
   [CellType.Glitch]: [222, 17, 139],
@@ -48,15 +51,24 @@ export const cellColors: Record<number, [number, number, number]> = {
   [CellType.Obsidian]: [35, 53, 98],
   [CellType.Oil]: [99, 46, 10],
   [CellType.Acid]: [161, 252, 3],
+  [CellType.Fuse]: [65, 66, 87],
+  [CellType.Ice]: [185, 232, 234],
+  [CellType.Mud]: [81, 60, 36],
+  [CellType.Smoke]: [71, 71, 71],
+  [CellType.Steam]: [210, 219, 220],
+  [CellType.Wood]: [150, 110, 51],
 };
 
 export const updateFns: Partial<Record<number, UpdateFn>> = {
   [CellType.Sand]: updateSand,
   [CellType.Water]: updateWater,
   [CellType.Glitch]: updateGlitch,
-    [CellType.Electric]: updateElectric,
-    [CellType.Lava]: updateLava,
-    [CellType.Fire]: updateFire,
-     [CellType.Oil]: updateOil,
+  [CellType.Electric]: updateElectric,
+  [CellType.Lava]: updateLava,
+  [CellType.Fire]: updateFire,
+  [CellType.Oil]: updateOil,
   [CellType.Acid]: updateAcid,
+  [CellType.Mud]: updateMud,
+  [CellType.Smoke]: updateSmoke,
+  [CellType.Steam]: updateSteam,
 };
