@@ -14,7 +14,7 @@ export function updateSmoke(grid: Grid, x: number, y: number) {
 
     grid.setMeta(x, y, lifetime);
 
-    if (Math.random() > 0.6) return;
+    if (Math.random() > 0.5) return;
 
     const n = Math.random() < 0.3 ? -1 : 0;
 
