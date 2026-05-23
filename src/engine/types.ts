@@ -6,11 +6,17 @@ export const CellType = {
   Glitch: 4,
   Electric: 5,
   Metal: 6,
-  Lava:7,
-  Fire:8,
-  Obsidian:9,
-  Oil:10,
-  Acid:11,
+  Lava: 7,
+  Fire: 8,
+  Obsidian: 9,
+  Oil: 10,
+  Acid: 11,
+  Fuse: 12,
+  Ice: 13,
+  Mud: 14,
+  Smoke: 15,
+  Steam: 16,
+  Wood: 17,
 } as const;
 
 export type CellType = (typeof CellType)[keyof typeof CellType]; 
