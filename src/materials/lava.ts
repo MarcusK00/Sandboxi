@@ -8,93 +8,97 @@ export function updateLava(grid: Grid, x: number, y: number) {
   if (y + 1 >= grid.height) return;
 
 
-switch (grid.get(x, y + 1)) {
+  switch (grid.get(x, y + 1)) {
     case CellType.Empty:
-        if (Math.random() > 0.4) return;
+      if (Math.random() > 0.4) return;
       grid.swap(x, y, x, y + 1);
       break;
 
     case CellType.Stone: {
 
-    if (Math.random() < 0.03) {
-    grid.set(x, y + 1, CellType.Lava);
-    }
+      if (Math.random() < 0.03) {
+        grid.set(x, y + 1, CellType.Lava);
+      }
 
-    if (Math.random() < 0.005) {
-    const dir = Math.random() < 0.5 ? -1 : 1;
-    const nx = x + dir;
-    if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
-      grid.set(nx, y + 1, CellType.Lava);
+      if (Math.random() < 0.005) {
+        const dir = Math.random() < 0.5 ? -1 : 1;
+        const nx = x + dir;
+        if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
+          grid.set(nx, y + 1, CellType.Lava);
+        }
+      }
+      break;
     }
-  }
-  break;
-}
 
     case CellType.Metal: {
 
-    if (Math.random() < 0.01) {
-    grid.set(x, y + 1, CellType.Lava);
-    }
+      if (Math.random() < 0.01) {
+        grid.set(x, y + 1, CellType.Lava);
+      }
 
-    if (Math.random() < 0.005) {
-    const dir = Math.random() < 0.5 ? -1 : 1;
-    const nx = x + dir;
-    if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
-      grid.set(nx, y + 1, CellType.Lava);
-    }
-  }
-  break;
-}
-
-
-    case CellType.Water:
-        if (Math.random() > 0.4) return;
-       
-        for(let i = 1; i<=4; i++){
-           if (Math.random() > 0.6) return;
-grid.set(x, y+i, CellType.Obsidian);
+      if (Math.random() < 0.005) {
+        const dir = Math.random() < 0.5 ? -1 : 1;
+        const nx = x + dir;
+        if (grid.inBounds(nx, y + 1) && grid.get(nx, y + 1) === CellType.Stone) {
+          grid.set(nx, y + 1, CellType.Lava);
         }
-            
-        break;
+      }
+      break;
+    }
+
+
+    case CellType.Water: {
+      if (Math.random() > 0.35) return;
+
+
+      grid.set(x, y, CellType.Obsidian);
+
+
+      grid.set(x, y - 1, CellType.Steam);
+      grid.setMeta(x, y - 1, 3);
+
+      return;
+    }
 
     case CellType.Oil: {
- if (Math.random() > 0.5) return;
+      if (Math.random() > 0.5) return;
 
-  grid.swap(x, y, x,y+1);
-  grid.set(x, y, CellType.Fire);
-  grid.setMeta(x, y, 0.6); 
-  break;
-}
+      grid.swap(x, y, x, y + 1);
+      grid.set(x, y, CellType.Fire);
+      grid.setMeta(x, y, 0.6);
+      break;
+    }
     default: {
       const dir = Math.random() < 0.5 ? -1 : 1;
       const diagA = x;
       const diagB = x;
 
-   if (Math.random() > 0.1) return;{
-     if (grid.inBounds(diagA, y + 1) && grid.get(diagA, y) === CellType.Empty && grid.get(diagA, y + 1) === CellType.Empty) {
-        grid.swap(x, y, diagA, y + 1);
+      if (Math.random() > 0.1) return; {
+        if (grid.inBounds(diagA, y + 1) && grid.get(diagA, y) === CellType.Empty && grid.get(diagA, y + 1) === CellType.Empty) {
+          grid.swap(x, y, diagA, y + 1);
+          break;
+        }
+        if (grid.inBounds(diagB, y + 1) && grid.get(diagB, y) === CellType.Empty && grid.get(diagB, y + 1) === CellType.Empty) {
+          grid.swap(x, y, diagB, y + 1);
+          break;
+        }
+      }
+
+
+
+      if (Math.random() > 0.6) return; {
+        for (let i = 1; i <= SPREAD; i++) {
+          const rx = x + (dir * i);
+          const lx = x - (dir * i);
+          const rOpen = grid.inBounds(rx, y) && grid.get(rx, y) === CellType.Empty;
+          const lOpen = grid.inBounds(lx, y) && grid.get(lx, y) === CellType.Empty;
+
+          if (rOpen) { grid.swap(x, y, rx, y); break; }
+          if (lOpen) { grid.swap(x, y, lx, y); break; }
+          if (!rOpen && !lOpen) break;
+        }
         break;
       }
-      if (grid.inBounds(diagB, y + 1) && grid.get(diagB, y) === CellType.Empty && grid.get(diagB, y + 1) === CellType.Empty) {
-        grid.swap(x, y, diagB, y + 1);
-        break;
-      }
-   }
-   
-
-
-if (Math.random() > 0.6) return;{
-      for (let i = 1; i <= SPREAD; i++) {
-        const rx = x + (dir * i);
-        const lx = x - (dir * i);
-        const rOpen = grid.inBounds(rx, y) && grid.get(rx, y) === CellType.Empty;
-        const lOpen = grid.inBounds(lx, y) && grid.get(lx, y) === CellType.Empty;
-
-        if (rOpen) { grid.swap(x, y, rx, y); break; }
-        if (lOpen) { grid.swap(x, y, lx, y); break; }
-        if (!rOpen && !lOpen) break;
-      }
-      break;
-    }}
+    }
   }
 }

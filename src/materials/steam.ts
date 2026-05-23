@@ -2,12 +2,21 @@ import type { Grid } from "../world/grid";
 import { CellType } from "../engine/types";
 
 const SPREAD = 9;
-
+const FRAMES_PER_SECOND = 30;
 export function updateSteam(grid: Grid, x: number, y: number) {
-    if (y + 1 >= grid.height) return;
-    if (Math.random() > 0.6) return;
+    const lifetime = grid.getMeta(x, y) - (1 / FRAMES_PER_SECOND);
 
-    switch (grid.get(x, y + 1)) {
+    if (lifetime <= 0) {
+        grid.set(x, y, CellType.Water);
+        grid.setMeta(x, y, 0);
+        return;
+    }
+
+    grid.setMeta(x, y, lifetime);
+    if (y - 1 < 0) return;
+    if (Math.random() > 0.4) return;
+
+    switch (grid.get(x, y - 1)) {
         case CellType.Empty:
             grid.swap(x, y, x, y - 1);
             break;
@@ -16,12 +25,12 @@ export function updateSteam(grid: Grid, x: number, y: number) {
             const diagA = x + dir;
             const diagB = x - dir;
 
-            if (grid.inBounds(diagA, y + 1) && grid.get(diagA, y) === CellType.Empty && grid.get(diagA, y + 1) === CellType.Empty) {
-                grid.swap(x, y, diagA, y + 1);
+            if (grid.inBounds(diagA, y - 1) && grid.get(diagA, y) === CellType.Empty && grid.get(diagA, y - 1) === CellType.Empty) {
+                grid.swap(x, y, diagA, y - 1);
                 break;
             }
-            if (grid.inBounds(diagB, y + 1) && grid.get(diagB, y) === CellType.Empty && grid.get(diagB, y + 1) === CellType.Empty) {
-                grid.swap(x, y, diagB, y + 1);
+            if (grid.inBounds(diagB, y - 1) && grid.get(diagB, y) === CellType.Empty && grid.get(diagB, y - 1) === CellType.Empty) {
+                grid.swap(x, y, diagB, y - 1);
                 break;
             }
 

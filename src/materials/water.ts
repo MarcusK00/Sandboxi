@@ -37,6 +37,18 @@ export function updateWater(grid: Grid, x: number, y: number) {
 
       break;
 
+    case CellType.Lava:
+
+      grid.set(x, y, CellType.Empty);
+
+
+      if (y > 0 && grid.get(x, y - 1) === CellType.Empty) {
+        grid.set(x, y - 1, CellType.Steam);
+        grid.setMeta(x, y - 1, 30);
+      }
+
+      break;
+
 
     default: {
       const dir = Math.random() < 0.5 ? -1 : 1;
